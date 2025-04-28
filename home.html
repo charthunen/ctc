@@ -11,23 +11,27 @@
     
     <style>
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f8f8f8;
+          font-family: Arial, sans-serif;
+          background-color: #f8f8f8;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          flex-direction: column;
+          min-height: 100vh;
         }
 
-        p {
-            max-width: 800px;
-            margin: 0 auto 20px auto; /* Centers text and adds spacing between paragraphs */
-            padding: 0 20px; 
-            text-align: left; 
-        }
         /* Navigation Bar */
         nav {
-            background-color: #333;
+            background-color: ##123a6e;
             padding: 10px 0;
             text-align: center;
         }
+        
+        /* Logo inside nav */
+        .nav-logo img {
+          height: 50px; /* Adjust logo height */
+          width: auto;
+        }        
 
         nav a {
             color: white;
@@ -38,161 +42,88 @@
         }
 
         nav a:hover {
-            background-color: #575757;
-        }
-
-        /* Slideshow container */
-        .slideshow-container {
-            position: center;
-            max-width: 450px; /* Smaller width for images */
-            max-height: 300px;
-            margin: auto;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            background-color: white;
-        }
-
-        .mySlides {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .mySlides img {
-            max-width: 100%; 
-            max-height: 100%;
-            object-fit: contain;
-        }
-
-        /* Navigation buttons */
-        .prev, .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            padding: 8px;
-            margin-top: -22px;
-            color: white;
-            font-weight: bold;
-            font-size: 18px;
-            transition: 0.3s ease;
+            background-color: #617fa5;
             border-radius: 5px;
-            background-color: rgba(0, 0, 0, 0.5);
-            user-select: none;
         }
 
-        .next {
-            right: 0;
-        }
+        
+    main {
+      flex: 1;
+      text-align: center;
+      padding: 40px 20px;
+    }
 
-        .prev {
-            left: 0;
-        }
+    .headshot {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      margin-top: 20px;
+    }
 
-        .prev:hover, .next:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
+    h1 {
+      font-size: 2.5rem;
+      margin-top: 20px;
+    }
 
-        /* Dots (indicators) */
-        .dot-container {
-            text-align: center;
-            margin-top: 10px;
-        }
+    p {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 20px;
+      text-align: left;
+    }
 
-        .dot {
-            cursor: pointer;
-            height: 12px;
-            width: 12px;
-            margin: 5px;
-            background-color: #bbb;
-            border-radius: 50%;
-            display: inline-block;
-            transition: background-color 0.3s ease;
-        }
+    footer {
+      background-color: #123a6e;
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+    }
 
-        .active, .dot:hover {
-            background-color: #717171;
-        }
-    </style>
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-links a:hover {
+      color: #617fa5;
+    }
+        
+  </style>
 </head>
 <body>
 
 <!-- Navigation Bar -->
 <nav>
-    <a href="home.html">Home</a>
-    <a href="portfolio.html">Portfolio</a>
-</nav>
+    <div class="nav-logo">
+      <a href="home.html">
+        <img src="big_white_on_blue_name.png" alt="Charlotte Logo">
+      </a>
+    </div>
+    <div class="nav-links">
+      <a href="home.html">Home</a>
+      <a href="portfolio.html">Portfolio</a>
+      <!-- Add more links here if needed -->
+    </div>
+  </nav>
 
 <!-- Page Content -->
 <main>
-<h1>Charlotte Thunen</h1>
-
-<!-- Slideshow Container -->
-<div class="slideshow-container">
-  <div class="mySlides fade">
-    <img src="charlotte.jpeg" alt="This is me!">
-  </div>
-
-  <div class="mySlides fade">
-    <img src="hike.jpeg" alt="Hike to Mason Lake in Washington!">
-  </div>
-
-  <div class="mySlides fade">
-    <img src="head_of_charles.jpeg" alt="The head of the Charles in Boston">
-  </div>
-
-  <div class="mySlides fade">
-    <img src="seattle.jpeg" alt="Seattle Skyline from Kerry Park">
-  </div>
-
-  <!-- Navigation buttons -->
-  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-  <a class="next" onclick="plusSlides(1)">&#10095;</a>
-</div>
-
-<!-- Dots for Navigation -->
-<div class="dot-container">
-  <span class="dot" onclick="currentSlide(1)"></span>
-  <span class="dot" onclick="currentSlide(2)"></span>
-  <span class="dot" onclick="currentSlide(3)"></span>
-  <span class="dot" onclick="currentSlide(4)"></span>
-</div>
-
-<script>
-let slideIndex = 1;
-showSlides(slideIndex);
-
-// Next/previous controls
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-// Thumbnail image controls
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("mySlides");
-  let dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}    
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
-  }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " active";
-}
-</script>
-</body>
-<body>
-
-    <h2>About Me</h2>
+    <img class="headshot" src="your-headshot.jpg" alt="Charlotte Thunen Headshot">
+    <h1>Charlotte Thunen</h1>
     <p>
       I am a Senior at Northeastern University pursuing a BS in Business Administration and Data 
         Science with a concentration in Brand Management. Highly motivated and proactive, I thrive on solving complex problems 
@@ -211,13 +142,13 @@ function showSlides(n) {
   <footer>
     <h2>Connect with Me</h2>
     <div class="footer-links">
-      <a href="https://www.linkedin.com/in/YOUR-LINKEDIN-USERNAME" target="_blank">
+      <a href="https://www.linkedin.com/in/charlotte-thunen/" target="_blank">
         <i class="fab fa-linkedin"></i> LinkedIn
       </a>
-      <a href="mailto:your.email@example.com">
+      <a href="mailto:charlottethunen@gmail.com">
         <i class="fas fa-envelope"></i> Email
       </a>
-      <a href="tel:+1234567890">
+      <a href="tel:2062455150">
         <i class="fas fa-phone"></i> Phone
       </a>
     </div>
