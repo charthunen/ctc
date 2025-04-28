@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            text-align: center;
+            padding: 20px;
+        }
+
+        p {
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+            padding: 0 20px;
+            text-align: left;
+        }
+
+        h1, h2 {
+            margin-top: 20px;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #333;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px 20px;
+            display: inline-block;
+        }
+
+        nav a:hover {
+            background-color: #575757;
+        }
+
+        /* Slideshow Styles (Optional) */
+        .slideshow-container {
+            position: relative;
+            max-width: 450px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: white;
+        }
+
+        .mySlides {
+            display: none;
+        }
+
+        .mySlides img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* Navigation buttons */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            padding: 8px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.5);
+            user-select: none;
+        }
+
+        .prev { left: 0; }
+        .next { right: 0; }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Dots */
+        .dot-container {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .active, .dot:hover {
+            background-color: #717171;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="portfolio.html">Portfolio</a>
+        <!-- Add more links as needed -->
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <h1>Portfolio</h1>
+
+        <!-- Optional Slideshow -->
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <img src="image1.jpg" alt="Description 1">
+            </div>
+            <div class="mySlides fade">
+                <img src="image2.jpg" alt="Description 2">
+            </div>
+            <!-- Add more slides as needed -->
+
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+
+        <div class="dot-container">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <!-- Add more dots as needed -->
+        </div>
+
+        <!-- Page-specific Content -->
+        <h2>See my work</h2>
+        <p>Examples of projects I have worked on both at Northeastern, and during my professional experiences.</p>
+        <p>fill in </p>
+
+        <!-- Optional Navigation Button -->
+        <button id="nextPageBtn">Go to next page</button>
+    </main>
+
+    <!-- Scripts -->
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            const slides = document.getElementsByClassName("mySlides");
+            const dots = document.getElementsByClassName("dot");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
+
+        // Button Navigation
+        document.getElementById("nextPageBtn").addEventListener('click', function() {
+            window.location.href = "portfolio.html";
+        });
+    </script>
+
+</body>
+</html>
