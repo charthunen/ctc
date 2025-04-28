@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to my website!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f8f8;
+        }
+
+        p {
+            max-width: 800px;
+            margin: 0 auto 20px auto; /* Centers text and adds spacing between paragraphs */
+            padding: 0 20px; 
+            text-align: left; 
+        }
+        /* Navigation Bar */
+        nav {
+            background-color: #333;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px 20px;
+            display: inline-block;
+        }
+
+        nav a:hover {
+            background-color: #575757;
+        }
+
+        /* Slideshow container */
+        .slideshow-container {
+            position: center;
+            max-width: 450px; /* Smaller width for images */
+            max-height: 300px;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: white;
+        }
+
+        .mySlides {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mySlides img {
+            max-width: 100%; 
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        /* Navigation buttons */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 8px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.3s ease;
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.5);
+            user-select: none;
+        }
+
+        .next {
+            right: 0;
+        }
+
+        .prev {
+            left: 0;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Dots (indicators) */
+        .dot-container {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 12px;
+            width: 12px;
+            margin: 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .active, .dot:hover {
+            background-color: #717171;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <a href="index.html">Home</a>
+    <a href="secondpage.html">More About Me</a>
+</nav>
+
+<h1>Charlotte's Website</h1>
+
+<!-- Slideshow Container -->
+<div class="slideshow-container">
+  <div class="mySlides fade">
+    <img src="charlotte.jpeg" alt="This is me!">
+  </div>
+
+  <div class="mySlides fade">
+    <img src="hike.jpeg" alt="Hike to Mason Lake in Washington!">
+  </div>
+
+  <div class="mySlides fade">
+    <img src="head_of_charles.jpeg" alt="The head of the Charles in Boston">
+  </div>
+
+  <div class="mySlides fade">
+    <img src="seattle.jpeg" alt="Seattle Skyline from Kerry Park">
+  </div>
+
+  <!-- Navigation buttons -->
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+
+<!-- Dots for Navigation -->
+<div class="dot-container">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+  <span class="dot" onclick="currentSlide(3)"></span>
+  <span class="dot" onclick="currentSlide(4)"></span>
+</div>
+
+<script>
+let slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+}
+</script>
+</body>
+<body>
+
+    <h2>About Me</h2>
+    <p>
+      Hi! My name is Charlotte, I am a Third year at Northeastern University pursuing a BS in Business Administration and Data 
+        Science with a concentration in Brand Management. I am originally from Seattle, Washington, so naturally, I 
+        love hiking, dogs and specialty coffee.  
+    </p>
+    <p>
+      On campus I am involved in several extracurriculars, including, Sigma Kappa Sorority, Women in Business, and WISE. 
+        Being involved in these organizations has provided me with a community and network of strong women who have 
+        supported me throughout my college journey and provided me with invaluable leadership experiences. I am the 
+        current president of the Sigma Kappa, Kappa Omega chapter, and I have previously held roles as the Vice President of 
+        Academic Excellence and the Activities Chair. In Women In Business I have had the pleasure of being a peer mentor 
+        for the past two semesters. This is a program where you are paired with underclassmen to be a resource for them 
+        regarding classes, co-op search, and concentration selection. 
+    </p>
+    <p>
+      In my time at Northeastern, I have completed two Marketing internships for Proxi Co and Relish (Seattle, WA), and 
+        one co-op as a project manager at MFS Investment Management (Boston, MA). After graduation, I plan to pursue a 
+        career in a Technical industry where I hope to combine my business and Data Science roles. 
+    </p> 
+    <p>
+      I love spending my free time exploring Boston's many coffee shops and restaurants, running along the Charles River,
+        and hanging out with friends.  
+    </p>
+    
+<!-- Navigation Button -->
+<button id = "NB">Go to next page</button>
+<script> 
+    const navigatebutton = document.getElementById("NB")
+    navigatebutton.addEventListener('click', function(){
+    window.location.href = "secondpage.html";
+    })
+</script>
+
+    
+</body>
+</html>
