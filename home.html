@@ -64,13 +64,6 @@
       width: auto;
     }
 
-    .nav-brand span {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--primary);
-    }
-
     nav ul {
       list-style: none;
       display: flex;
@@ -102,6 +95,30 @@
     nav ul a:hover::after, nav ul a.active::after {
       width: 100%;
     }
+
+    /* Hamburger button */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--primary);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
     .hero {
       min-height: 100vh;
@@ -562,6 +579,38 @@
       .skills-grid { grid-template-columns: 1fr; }
       .footer-links { grid-template-columns: 1fr; }
       .footer-link { justify-content: flex-start; }
+      .about-bottom { grid-template-columns: 1fr; }
+      .about-photos { grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 110px); }
+
+      /* Mobile nav */
+      .nav-toggle { display: flex; }
+
+      nav {
+        position: absolute;
+        top: 64px; left: 0; right: 0;
+        background: rgba(255, 254, 252, 0.98);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+
+      nav.open { max-height: 300px; }
+
+      nav ul {
+        flex-direction: column;
+        gap: 0;
+        padding: 0.5rem 0 1rem;
+      }
+
+      nav ul li a {
+        display: block;
+        padding: 0.85rem 2rem;
+        font-size: 1rem;
+      }
+
+      nav ul a::after { display: none; }
     }
   </style>
 </head>
@@ -572,12 +621,13 @@
   <div class="nav-inner">
     <a href="home.html" class="nav-brand">
       <img src="CT.png" alt="CT Logo">
-      <span>Charlotte Thunen</span>
     </a>
-    <nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="mainNav">
       <ul>
         <li><a href="home.html" class="active">Home</a></li>
-        <li><a href="#about">About</a></li>
         <li><a href="projects.html">Projects</a></li>
         <li><a href="experience.html">Experience</a></li>
       </ul>
@@ -589,7 +639,7 @@
 <section class="hero">
   <img 
     class="hero-photo" 
-    src="photos/charlotte_thunen.jpg" 
+    src="charlotte_thunen.jpg" 
     alt="Charlotte Thunen"
   >
   <h1>Hi, I'm <span>Charlotte Thunen</span></h1>
@@ -650,33 +700,33 @@
     <div class="about-photos">
 
       <div class="about-photo">
-        <img src="photos/seattle.jpg" alt="Seattle">
+        <img src="seattle.jpg" alt="Seattle">
         <div class="photo-caption">Seattle, WA</div>
       </div>
 
       <div class="about-photo">
-        <img src="photos/boston.jpg" alt="Boston">
+        <img src="boston.jpg" alt="Boston">
         <div class="photo-caption">Boston, MA</div>
       </div>
 
       <div class="about-photo">
-        <img src="photos/running.jpeg" alt="Running">
-        <div class="photo-caption">Cambridge Half Marathon</div>
+        <img src="running.jpg" alt="Running">
+        <div class="photo-caption">Running</div>
       </div>
 
       <div class="about-photo">
-        <img src="photos/hiking.jpg" alt="Hiking">
+        <img src="hiking.jpg" alt="Hiking">
         <div class="photo-caption">Hiking PNW</div>
       </div>
 
       <div class="about-photo">
-        <img src="photos/bread.jpg" alt="Baking Sourdough">
-        <div class="photo-caption">Baking Sourdough</div>
+        <img src="baking.jpg" alt="Sourdough baking">
+        <div class="photo-caption">Sourdough Baking</div>
       </div>
 
       <div class="about-photo">
-        <img src="photos/dog.jpg" alt="Dog">
-        <div class="photo-caption">Teddy</div>
+        <img src="dog.jpg" alt="Dog">
+        <div class="photo-caption">My Dog</div>
       </div>
 
     </div>
@@ -757,7 +807,18 @@
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Skill tag hover colors
+  // Hamburger menu
+  const toggle = document.getElementById('navToggle');
+  const nav = document.getElementById('mainNav');
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('open');
+    nav.classList.toggle('open');
+  });
+  // Close menu when a link is clicked
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    toggle.classList.remove('open');
+    nav.classList.remove('open');
+  }));
   document.querySelectorAll('.skill-tags').forEach(group => {
     const color = group.dataset.color;
     group.querySelectorAll('.skill-tag').forEach(tag => {
