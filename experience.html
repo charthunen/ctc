@@ -168,6 +168,7 @@
     .timeline-card.card-primary   { border-left-color: var(--primary); }
     .timeline-card.card-secondary { border-left-color: var(--secondary); }
     .timeline-card.card-accent1   { border-left-color: var(--accent1); }
+    .timeline-card.card-accent2   { border-left-color: var(--accent2); }
 
     .timeline-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.3rem; }
     .timeline-role { font-weight: 700; font-size: 1.05rem; }
@@ -186,12 +187,12 @@
     .tag:hover { background: var(--primary); color: white; }
 
     /* ---- EDUCATION ---- */
-    .education-section { padding: 0 2rem 5.5rem; max-width: 860px; margin: 0 auto; }
+    .education-section { padding: 0 2rem 3rem; max-width: 860px; margin: 0 auto; }
 
     .edu-card {
       background: white;
       border: 1.5px solid var(--border);
-      border-top: 4px solid var(--secondary);
+      border-left: 4px solid var(--secondary);
       border-radius: 14px;
       padding: 1.75rem;
       display: flex;
@@ -200,13 +201,37 @@
       transition: box-shadow 0.2s, transform 0.2s;
     }
 
-    .edu-card:hover { box-shadow: 0 8px 28px rgba(18,58,110,0.09); transform: translateY(-2px); }
+    .edu-card:hover { box-shadow: 0 8px 28px rgba(18,58,110,0.09); transform: translateX(3px); }
 
     .edu-icon { width: 52px; height: 52px; background: rgba(116,10,10,0.08); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--secondary); font-size: 1.4rem; flex-shrink: 0; }
     .edu-info h3 { font-weight: 700; font-size: 1.05rem; margin-bottom: 0.25rem; }
     .edu-info .school { color: var(--primary); font-weight: 600; margin-bottom: 0.2rem; }
     .edu-info .date { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.65rem; }
     .edu-info p { font-size: 0.93rem; color: var(--muted); line-height: 1.65; }
+
+    /* ---- LEADERSHIP ---- */
+    .leadership-section { padding: 0 2rem 5.5rem; max-width: 860px; margin: 0 auto; }
+
+    .leadership-card {
+      background: white;
+      border: 1.5px solid var(--border);
+      border-left-width: 4px;
+      border-radius: 14px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 1.5rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .leadership-card:hover { box-shadow: 0 8px 28px rgba(18,58,110,0.09); transform: translateX(3px); }
+    .leadership-card.card-primary   { border-left-color: var(--primary); }
+    .leadership-card.card-secondary { border-left-color: var(--secondary); }
+    .leadership-card.card-accent1   { border-left-color: var(--accent1); }
+    .leadership-card.card-accent2   { border-left-color: var(--accent2); }
+
+    .leadership-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.25rem; }
+    .leadership-role { font-weight: 700; font-size: 1.05rem; }
+    .leadership-org { color: var(--primary); font-weight: 600; font-size: 0.95rem; margin-bottom: 0.2rem; }
+    .leadership-desc { font-size: 0.93rem; color: var(--muted); line-height: 1.6; margin-bottom: 0.75rem; }
 
     /* ---- FOOTER ---- */
     footer { padding: 4rem 2rem; border-top: 1px solid rgba(116,10,10,0.12); background: linear-gradient(180deg, #fdf5f5 0%, var(--bg) 100%); }
@@ -291,6 +316,29 @@
     <div class="timeline-item">
       <div class="timeline-card card-primary">
         <div class="timeline-header">
+          <span class="timeline-role">Marketing and Sales Intern</span>
+          <span class="timeline-date">May 2025 – Present</span>
+        </div>
+        <div class="timeline-company">Legata</div>
+        <div class="timeline-location"><i class="fas fa-map-marker-alt"></i> Mercer Island, WA</div>
+        <ul class="timeline-bullets">
+          <li>Collaborate with the Sales and Marketing teams to align messaging, identify campaign opportunities, and track success metrics.</li>
+          <li>Identify potential affiliate influencers based on brand and content fit, initialize outreach and maintain relationships.</li>
+          <li>Authored Media Strategy guide focused on adapting to evolving trends and generating digital trust across platforms.</li>
+          <li>Collaborate with Marketing team to generate meaningful content and align brand voice across channels.</li>
+        </ul>
+        <div class="timeline-tags">
+          <span class="tag">Marketing Strategy</span>
+          <span class="tag">Influencer Outreach</span>
+          <span class="tag">Content Strategy</span>
+          <span class="tag">Social Media</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card card-secondary">
+        <div class="timeline-header">
           <span class="timeline-role">Project Manager Co-op</span>
           <span class="timeline-date">Jan 2024 – Jun 2024</span>
         </div>
@@ -310,7 +358,7 @@
     </div>
 
     <div class="timeline-item">
-      <div class="timeline-card card-secondary">
+      <div class="timeline-card card-accent1">
         <div class="timeline-header">
           <span class="timeline-role">Marketing Intern</span>
           <span class="timeline-date">Summer 2023</span>
@@ -331,7 +379,7 @@
     </div>
 
     <div class="timeline-item">
-      <div class="timeline-card card-accent1">
+      <div class="timeline-card card-accent2">
         <div class="timeline-header">
           <span class="timeline-role">Marketing Intern</span>
           <span class="timeline-date">Summer 2022</span>
@@ -356,14 +404,113 @@
 
 <section class="education-section">
   <h2 class="section-label"><i class="fas fa-book-open"></i> Education</h2>
-  <div class="edu-card">
-    <div class="edu-icon"><i class="fas fa-university"></i></div>
-    <div class="edu-info">
-      <h3>BS in Business Administration &amp; Data Science</h3>
-      <div class="school">Northeastern University</div>
-      <div class="date">2021 – 2025 &nbsp;·&nbsp; Boston, MA</div>
-      <p>Concentration in Brand Management. Combining rigorous quantitative coursework with applied business strategy, with a focus on using data-driven insights to shape brand decisions.</p>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="edu-card">
+        <div class="edu-icon"><i class="fas fa-university"></i></div>
+        <div class="edu-info">
+          <h3>BS in Business Administration &amp; Data Science</h3>
+          <div class="school">Northeastern University</div>
+          <div class="date">2022 – 2026 &nbsp;·&nbsp; Boston, MA</div>
+          <p>Concentration in Brand Management. Combining rigorous quantitative coursework with applied business strategy, with a focus on using data-driven insights to shape brand decisions.</p>
+
+          <div style="margin-top: 1.1rem;">
+            <div style="font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--primary); margin-bottom:0.5rem;">Relevant Coursework</div>
+            <div class="timeline-tags">
+              <span class="tag">Machine Learning &amp; Data Mining 1 &amp; 2</span>
+              <span class="tag">Large Scale Storage &amp; Retrieval</span>
+              <span class="tag">Creating Value with Data &amp; AI</span>
+              <span class="tag">Business Statistics</span>
+              <span class="tag">Advertising &amp; Brand Promotion</span>
+              <span class="tag">Brand Management</span>
+              <span class="tag">Organizational Behavior</span>
+            </div>
+          </div>
+
+          <div style="margin-top: 1rem;">
+            <div style="font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--secondary); margin-bottom:0.5rem;">Involvement</div>
+            <div class="timeline-tags">
+              <span class="tag" style="background:rgba(116,10,10,0.07); color:var(--secondary);">Dean's List</span>
+              <span class="tag" style="background:rgba(116,10,10,0.07); color:var(--secondary);">Sigma Kappa Sorority</span>
+              <span class="tag" style="background:rgba(116,10,10,0.07); color:var(--secondary);">Women in Business</span>
+              <span class="tag" style="background:rgba(116,10,10,0.07); color:var(--secondary);">Northeastern University Marketing Association</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
+
+<section class="leadership-section">
+  <h2 class="section-label"><i class="fas fa-users"></i> Leadership</h2>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="leadership-card card-primary">
+        <div class="leadership-header">
+          <span class="leadership-role">President</span>
+          <span class="timeline-date">December 2024 – December 2025</span>
+        </div>
+        <div class="leadership-org">Northeastern Sigma Kappa</div>
+        <p class="leadership-desc">Lead a team of 9 governing board members to organize events, workshops, and networking opportunities for 200+ members.</p>
+        <ul class="timeline-bullets">
+          <li>Represented the Northeastern Chapter at the Summit for Collegiate Leadership.</li>
+          <li>Collaborated with other student leaders to improve the FSL experience and foster a positive and safe environment.</li>
+          <li>Communicated with Northeastern Faculty, National HQs, and Advisors advocating for organization needs.</li>
+          <li>Oversaw fundraising efforts for the Sigma Kappa Foundation and the Alzheimer's Association totaling over $25k.</li>
+          <li>Managed annual recruitment efforts to maintain a high membership standard and grow the organization to meet campus total.</li>
+        </ul>
+        <div class="timeline-tags">
+          <span class="tag">Leadership</span>
+          <span class="tag">Event Planning</span>
+          <span class="tag">Fundraising</span>
+          <span class="tag">Recruitment</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="leadership-card card-secondary">
+        <div class="leadership-header">
+          <span class="leadership-role">Vice President of Academic Excellence</span>
+          <span class="timeline-date">December 2023 – December 2024</span>
+        </div>
+        <div class="leadership-org">Northeastern Sigma Kappa</div>
+        <p class="leadership-desc">Collaborated with executive board with a focus on enhancing academic and professional support opportunities for members.</p>
+        <ul class="timeline-bullets">
+          <li>Organized mentorship program for members to connect with others in their field of interest.</li>
+          <li>Organized professional development workshops and career fair opportunities.</li>
+          <li>Facilitated Academic Support Program for members who are not in good academic standing.</li>
+        </ul>
+        <div class="timeline-tags">
+          <span class="tag">Mentorship</span>
+          <span class="tag">Professional Development</span>
+          <span class="tag">Academic Support</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="leadership-card card-accent2">
+        <div class="leadership-header">
+          <span class="leadership-role">Peer Mentor</span>
+          <span class="timeline-date">September 2023 – December 2024</span>
+        </div>
+        <div class="leadership-org">Northeastern Women in Business</div>
+        <p class="leadership-desc">Served as a Peer Mentor for undergraduate members of Women in Business.</p>
+        <ul class="timeline-bullets">
+          <li>Advised mentees on course recommendations and career trajectory.</li>
+          <li>Conducted resume reviews and mock interviews to prepare mentees for Co-Op search.</li>
+        </ul>
+        <div class="timeline-tags">
+          <span class="tag">Mentorship</span>
+          <span class="tag">Career Coaching</span>
+          <span class="tag">Resume Review</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
