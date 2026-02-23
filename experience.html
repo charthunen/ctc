@@ -22,12 +22,7 @@
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); }
 
     /* ---- NAV ---- */
     header {
@@ -49,22 +44,8 @@
       justify-content: space-between;
     }
 
-    .nav-brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: var(--text);
-    }
-
+    .nav-brand { display: flex; align-items: center; text-decoration: none; }
     .nav-brand img { height: 38px; width: auto; }
-
-    .nav-brand span {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--primary);
-    }
 
     nav ul { list-style: none; display: flex; gap: 2rem; }
 
@@ -89,6 +70,29 @@
     nav ul a:hover, nav ul a.active { color: var(--primary); }
     nav ul a:hover::after, nav ul a.active::after { width: 100%; }
 
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      z-index: 101;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--primary);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
     /* ---- PAGE HERO ---- */
     .page-hero {
       padding: 9rem 2rem 4.5rem;
@@ -100,24 +104,16 @@
       font-family: 'Playfair Display', serif;
       font-size: clamp(2rem, 4vw, 3rem);
       margin-bottom: 0.5rem;
-      animation: fadeInUp 0.7s ease both;
     }
 
     .section-line {
-      width: 60px;
-      height: 3px;
+      width: 60px; height: 3px;
       background: linear-gradient(to right, var(--primary), var(--accent1));
       margin: 0.75rem auto 0;
       border-radius: 2px;
     }
 
-    .page-hero p {
-      color: var(--muted);
-      max-width: 480px;
-      margin: 1rem auto 0;
-      line-height: 1.7;
-      animation: fadeInUp 0.7s 0.1s ease both;
-    }
+    .page-hero p { color: var(--muted); max-width: 480px; margin: 1rem auto 0; line-height: 1.7; }
 
     /* ---- SECTION LABELS ---- */
     .section-label {
@@ -133,16 +129,9 @@
     .section-label i { font-size: 1rem; color: var(--accent2); }
 
     /* ---- TIMELINE ---- */
-    .timeline-section {
-      padding: 5rem 2rem 3rem;
-      max-width: 860px;
-      margin: 0 auto;
-    }
+    .timeline-section { padding: 5rem 2rem 3rem; max-width: 860px; margin: 0 auto; }
 
-    .timeline {
-      position: relative;
-      padding-left: 2rem;
-    }
+    .timeline { position: relative; padding-left: 2rem; }
 
     .timeline::before {
       content: '';
@@ -153,19 +142,13 @@
       border-radius: 2px;
     }
 
-    .timeline-item {
-      position: relative;
-      margin-bottom: 2rem;
-      padding-left: 2rem;
-    }
+    .timeline-item { position: relative; margin-bottom: 2rem; padding-left: 2rem; }
 
     .timeline-item::before {
       content: '';
       position: absolute;
-      left: -2.45rem;
-      top: 0.45rem;
-      width: 12px;
-      height: 12px;
+      left: -2.45rem; top: 0.45rem;
+      width: 12px; height: 12px;
       border-radius: 50%;
       background: var(--primary);
       border: 3px solid var(--bg);
@@ -181,94 +164,29 @@
       transition: box-shadow 0.2s, transform 0.2s;
     }
 
-    .timeline-card:hover {
-      box-shadow: 0 8px 28px rgba(18,58,110,0.09);
-      transform: translateX(3px);
-    }
-
+    .timeline-card:hover { box-shadow: 0 8px 28px rgba(18,58,110,0.09); transform: translateX(3px); }
     .timeline-card.card-primary   { border-left-color: var(--primary); }
     .timeline-card.card-secondary { border-left-color: var(--secondary); }
     .timeline-card.card-accent1   { border-left-color: var(--accent1); }
 
-    .timeline-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 0.3rem;
-    }
-
+    .timeline-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.3rem; }
     .timeline-role { font-weight: 700; font-size: 1.05rem; }
 
-    .timeline-date {
-      font-size: 0.82rem;
-      color: var(--muted);
-      background: #f0f4f9;
-      padding: 0.2rem 0.75rem;
-      border-radius: 20px;
-      white-space: nowrap;
-    }
-
-    .timeline-company {
-      color: var(--primary);
-      font-weight: 600;
-      font-size: 0.95rem;
-      margin-bottom: 0.2rem;
-    }
-
-    .timeline-location {
-      font-size: 0.82rem;
-      color: var(--muted);
-      margin-bottom: 0.85rem;
-    }
-
+    .timeline-date { font-size: 0.82rem; color: var(--muted); background: #f0f4f9; padding: 0.2rem 0.75rem; border-radius: 20px; white-space: nowrap; }
+    .timeline-company { color: var(--primary); font-weight: 600; font-size: 0.95rem; margin-bottom: 0.2rem; }
+    .timeline-location { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.85rem; }
     .timeline-location i { margin-right: 4px; color: var(--accent2); }
 
     .timeline-bullets { list-style: none; padding: 0; }
+    .timeline-bullets li { color: var(--muted); font-size: 0.93rem; line-height: 1.65; margin-bottom: 0.4rem; padding-left: 1.25rem; position: relative; }
+    .timeline-bullets li::before { content: '–'; position: absolute; left: 0; color: var(--accent1); }
 
-    .timeline-bullets li {
-      color: var(--muted);
-      font-size: 0.93rem;
-      line-height: 1.65;
-      margin-bottom: 0.4rem;
-      padding-left: 1.25rem;
-      position: relative;
-    }
-
-    .timeline-bullets li::before {
-      content: '–';
-      position: absolute;
-      left: 0;
-      color: var(--accent1);
-    }
-
-    .timeline-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 1rem;
-    }
-
-    .tag {
-      font-size: 0.78rem;
-      padding: 0.25rem 0.75rem;
-      border-radius: 20px;
-      background: rgba(18,58,110,0.07);
-      color: var(--primary);
-      font-weight: 500;
-      transition: background 0.2s, color 0.2s;
-      cursor: default;
-    }
-
+    .timeline-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+    .tag { font-size: 0.78rem; padding: 0.25rem 0.75rem; border-radius: 20px; background: rgba(18,58,110,0.07); color: var(--primary); font-weight: 500; transition: background 0.2s, color 0.2s; cursor: default; }
     .tag:hover { background: var(--primary); color: white; }
 
     /* ---- EDUCATION ---- */
-    .education-section {
-      padding: 0 2rem 5.5rem;
-      max-width: 860px;
-      margin: 0 auto;
-    }
+    .education-section { padding: 0 2rem 5.5rem; max-width: 860px; margin: 0 auto; }
 
     .edu-card {
       background: white;
@@ -282,118 +200,61 @@
       transition: box-shadow 0.2s, transform 0.2s;
     }
 
-    .edu-card:hover {
-      box-shadow: 0 8px 28px rgba(18,58,110,0.09);
-      transform: translateY(-2px);
-    }
+    .edu-card:hover { box-shadow: 0 8px 28px rgba(18,58,110,0.09); transform: translateY(-2px); }
 
-    .edu-icon {
-      width: 52px;
-      height: 52px;
-      background: rgba(116,10,10,0.08);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--secondary);
-      font-size: 1.4rem;
-      flex-shrink: 0;
-    }
-
+    .edu-icon { width: 52px; height: 52px; background: rgba(116,10,10,0.08); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--secondary); font-size: 1.4rem; flex-shrink: 0; }
     .edu-info h3 { font-weight: 700; font-size: 1.05rem; margin-bottom: 0.25rem; }
     .edu-info .school { color: var(--primary); font-weight: 600; margin-bottom: 0.2rem; }
     .edu-info .date { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.65rem; }
     .edu-info p { font-size: 0.93rem; color: var(--muted); line-height: 1.65; }
 
     /* ---- FOOTER ---- */
-    footer {
-      padding: 4rem 2rem;
-      border-top: 1px solid rgba(116, 10, 10, 0.12);
-      background: linear-gradient(180deg, #fdf5f5 0%, var(--bg) 100%);
-    }
+    footer { padding: 4rem 2rem; border-top: 1px solid rgba(116,10,10,0.12); background: linear-gradient(180deg, #fdf5f5 0%, var(--bg) 100%); }
 
-    .footer-inner {
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
-    }
+    .footer-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+    .footer-inner h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 0.4rem; color: var(--primary); }
 
-    .footer-inner h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      margin-bottom: 0.4rem;
-      color: var(--primary);
-    }
+    .footer-accent-line { width: 50px; height: 3px; background: linear-gradient(to right, var(--secondary), var(--accent2)); border-radius: 2px; margin: 0 auto 1.25rem; }
+    .footer-inner > p { color: var(--muted); max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.7; }
 
-    .footer-accent-line {
-      width: 50px;
-      height: 3px;
-      background: linear-gradient(to right, var(--secondary), var(--accent2));
-      border-radius: 2px;
-      margin: 0 auto 1.25rem;
-    }
+    .footer-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; max-width: 700px; margin: 0 auto; }
 
-    .footer-inner > p {
-      color: var(--muted);
-      max-width: 500px;
-      margin: 0 auto 2.5rem;
-      line-height: 1.7;
-    }
+    .footer-link { display: flex; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem; background: white; border: 2px solid var(--border); border-radius: 12px; text-decoration: none; transition: border-color 0.2s, box-shadow 0.2s; }
+    .footer-link:hover { border-color: var(--primary); box-shadow: 0 4px 16px rgba(18,58,110,0.1); }
 
-    .footer-links {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    .footer-link {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1.25rem 1.5rem;
-      background: white;
-      border: 2px solid var(--border);
-      border-radius: 12px;
-      text-decoration: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .footer-link:hover {
-      border-color: var(--primary);
-      box-shadow: 0 4px 16px rgba(18, 58, 110, 0.1);
-    }
-
-    .footer-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      background: rgba(18, 58, 110, 0.08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--primary);
-      font-size: 1.2rem;
-      flex-shrink: 0;
-      transition: background 0.2s, color 0.2s;
-    }
-
+    .footer-icon { width: 44px; height: 44px; border-radius: 10px; background: rgba(18,58,110,0.08); display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 1.2rem; flex-shrink: 0; transition: background 0.2s, color 0.2s; }
     .footer-link:hover .footer-icon { background: var(--primary); color: white; }
     .footer-info { text-align: left; }
     .footer-info .label { font-size: 0.75rem; color: var(--muted); margin-bottom: 2px; }
     .footer-info .handle { font-size: 0.85rem; color: var(--text); font-weight: 500; }
 
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 768px) {
+      .footer-links { grid-template-columns: 1fr; }
+      .edu-card { flex-direction: column; }
+      .nav-toggle { display: flex; }
 
-    @media (max-width: 640px) {
+      .nav-inner { flex-wrap: wrap; height: auto; padding: 0; }
+      .nav-inner > a { padding: 0 1.25rem; height: 64px; display: flex; align-items: center; }
+      .nav-inner > button { margin-right: 1.25rem; }
+
+      nav {
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        border-top: 1px solid var(--border);
+        background: rgba(255,254,252,0.98);
+      }
+
+      nav.open { max-height: 300px; }
+      nav ul { flex-direction: column; gap: 0; padding: 0.5rem 0 1rem; }
+      nav ul li a { display: block; padding: 0.85rem 1.5rem; font-size: 1rem; }
+      nav ul a::after { display: none; }
+
       .timeline { padding-left: 1rem; }
       .timeline-item { padding-left: 1.25rem; }
       .timeline-item::before { left: -1.45rem; }
-      .footer-links { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -403,12 +264,13 @@
   <div class="nav-inner">
     <a href="home.html" class="nav-brand">
       <img src="CT.png" alt="CT Logo">
-      <span>Charlotte Thunen</span>
     </a>
-    <nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="mainNav">
       <ul>
         <li><a href="home.html">Home</a></li>
-        <li><a href="home.html#about">About</a></li>
         <li><a href="projects.html">Projects</a></li>
         <li><a href="experience.html" class="active">Experience</a></li>
       </ul>
@@ -505,7 +367,6 @@
   </div>
 </section>
 
-
 <footer>
   <div class="footer-inner">
     <h3>Let's Connect</h3>
@@ -529,23 +390,37 @@
       <a href="https://www.linkedin.com/in/charlotte-thunen/" target="_blank" class="footer-link">
         <div class="footer-icon"><i class="fab fa-linkedin"></i></div>
         <div class="footer-info">
-          <div class="l
+          <div class="label">LinkedIn</div>
+          <div class="handle">Charlotte Thunen</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</footer>
+
 <script>
-  const toggle = document.getElementById('navToggle');
-  const nav = document.getElementById('mainNav');
-  toggle.addEventListener('click', () => {
-    toggle.classList.toggle('open');
-    nav.classList.toggle('open');
-  });
-  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    toggle.classList.remove('open');
-    nav.classList.remove('open');
-  }));
-</script>
-<script>
+  // Email
   const u = 'charlottethunen', d = 'gmail.com', email = u + '@' + d;
-  const el = document.getElementById('emailLink');
-  const handle = document.getElementById('emailHandle');
-  if (el) el.href = 'mailto:' + email;
-  if (handle) handle.textContent = email;
+  const emailLink = document.getElementById('emailLink');
+  const emailHandle = document.getElementById('emailHandle');
+  if (emailLink) emailLink.href = 'mailto:' + email;
+  if (emailHandle) emailHandle.textContent = email;
+
+  // Hamburger
+  const toggle = document.getElementById('navToggle');
+  const mobileNav = document.getElementById('mainNav');
+  if (toggle && mobileNav) {
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('open');
+      mobileNav.classList.toggle('open');
+    });
+    mobileNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        toggle.classList.remove('open');
+        mobileNav.classList.remove('open');
+      });
+    });
+  }
 </script>
+</body>
+</html>
