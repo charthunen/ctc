@@ -176,10 +176,10 @@
       flex-direction: column;
     }
 
-    /* Alternate top-border colors cycling through palette — matches skill cards */
-    .project-card:nth-child(3n+1) { border-top-color: var(--primary); }
-    .project-card:nth-child(3n+2) { border-top-color: var(--secondary); }
-    .project-card:nth-child(3n+3) { border-top-color: var(--accent1); }
+    /* Top border colors match card categories */
+    .project-card[data-category="brand"]    { border-top-color: var(--secondary); }
+    .project-card[data-category="data"]     { border-top-color: var(--primary); }
+    .project-card[data-category="social"]   { border-top-color: #7a5a9a; }
 
     .project-card:hover {
       box-shadow: 0 16px 40px rgba(18,58,110,0.1);
@@ -227,6 +227,7 @@
     .cat-data     { color: var(--primary); }
     .cat-brand    { color: var(--secondary); }
     .cat-strategy { color: #4a7a3a; }
+    .cat-social   { color: #7a5a9a; }
 
     .project-title {
       font-family: 'Playfair Display', serif;
@@ -398,129 +399,93 @@
 <div class="page-hero">
   <h1>Projects</h1>
   <div class="section-line"></div>
-  <p>A selection of work from Northeastern and my professional experiences — spanning data science, brand strategy, and analytics.</p>
+  <p>A collection of projects showcasing my work in brand strategy, data analysis, and business intelligence — each bridging analytics and creativity.</p>
 </div>
 
 <div class="filters">
   <button class="filter-btn active" onclick="filterProjects('all', this)">All</button>
-  <button class="filter-btn" onclick="filterProjects('data', this)">Data &amp; Analytics</button>
   <button class="filter-btn" onclick="filterProjects('brand', this)">Brand Strategy</button>
-  <button class="filter-btn" onclick="filterProjects('strategy', this)">Strategy</button>
+  <button class="filter-btn" onclick="filterProjects('data', this)">Data &amp; Analytics</button>
+  <button class="filter-btn" onclick="filterProjects('social', this)">Social Media</button>
 </div>
 
 <section class="projects-section">
   <div class="projects-grid" id="projectsGrid">
 
-    <div class="project-card" data-category="data">
-      <div class="project-thumb">
-        <div class="project-thumb-placeholder" style="background:linear-gradient(135deg,#e8f0fb,#c5d8f5);">📊</div>
-      </div>
-      <div class="project-body">
-        <div class="project-category cat-data">Data &amp; Analytics</div>
-        <div class="project-title">Consumer Segmentation Analysis</div>
-        <p class="project-desc">Used Python and clustering algorithms to segment consumer groups for a regional retail brand, identifying actionable insights to optimize targeting and campaign spend.</p>
-        <div class="project-tags">
-          <span class="project-tag">Python</span>
-          <span class="project-tag">K-Means</span>
-          <span class="project-tag">Tableau</span>
-        </div>
-        <div class="project-links">
-          <a href="#" class="project-link"><i class="fab fa-github"></i> GitHub</a>
-        </div>
-      </div>
-    </div>
-
+    <!-- PROJECT 1: WIN Energy -->
     <div class="project-card" data-category="brand">
       <div class="project-thumb">
-        <div class="project-thumb-placeholder" style="background:linear-gradient(135deg,#fbeaea,#f5c5c5);">🎯</div>
+        <img
+          src="win_energy.png"
+          alt="WIN Energy Drink Campaign"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
+        >
+        <div class="project-thumb-placeholder" style="background:linear-gradient(135deg,#fbeaea,#f5c5c5); display:none;">⚡</div>
       </div>
       <div class="project-body">
         <div class="project-category cat-brand">Brand Strategy</div>
-        <div class="project-title">Brand Audit &amp; Repositioning</div>
-        <p class="project-desc">Conducted a comprehensive brand audit for a local CPG company, recommending a repositioning strategy based on competitive analysis and consumer perception research.</p>
-        <div class="project-tags">
-          <span class="project-tag">Brand Strategy</span>
-          <span class="project-tag">Consumer Research</span>
-          <span class="project-tag">Competitive Analysis</span>
-        </div>
-        <div class="project-links">
-          <a href="#" class="project-link"><i class="fas fa-file-pdf"></i> View Deck</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="project-card" data-category="data">
-      <div class="project-thumb">
-        <div class="project-thumb-placeholder" style="background:linear-gradient(135deg,#edf3fb,#b8d0ef);">📈</div>
-      </div>
-      <div class="project-body">
-        <div class="project-category cat-data">Data &amp; Analytics</div>
-        <div class="project-title">Marketing Mix Modeling</div>
-        <p class="project-desc">Built a regression-based marketing mix model in R to evaluate the ROI of different marketing channels, providing recommendations to optimize budget allocation.</p>
-        <div class="project-tags">
-          <span class="project-tag">R</span>
-          <span class="project-tag">Regression</span>
-          <span class="project-tag">Marketing Analytics</span>
-        </div>
-        <div class="project-links">
-          <a href="#" class="project-link"><i class="fab fa-github"></i> GitHub</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="project-card" data-category="strategy">
-      <div class="project-thumb">
-        <div class="project-thumb-placeholder" style="background:linear-gradient(135deg,#edf5e8,#c5ddb8);">🌿</div>
-      </div>
-      <div class="project-body">
-        <div class="project-category cat-strategy">Strategy</div>
-        <div class="project-title">Market Entry Strategy</div>
-        <p class="project-desc">Developed a go-to-market strategy for a sustainable product line entering a new geographic market, combining financial modeling with qualitative consumer research.</p>
+        <div class="project-title">Advertising &amp; Brand Promotion Campaign</div>
+        <p class="project-desc">Comprehensive advertising and brand promotion strategy for WIN: a seamoss infused energy drink, utilizing market research and consumer sentiment data to generate actionable recommendations for the brand.</p>
         <div class="project-tags">
           <span class="project-tag">Market Research</span>
-          <span class="project-tag">Financial Modeling</span>
-          <span class="project-tag">Excel</span>
+          <span class="project-tag">Brand Strategy</span>
+          <span class="project-tag">Data Analysis</span>
+          <span class="project-tag">Advertising Strategy</span>
         </div>
         <div class="project-links">
-          <a href="#" class="project-link"><i class="fas fa-file-pdf"></i> View Deck</a>
+          <a href="https://www.canva.com/design/DAG4nMCQnuM/jIuanMT4UJqln8X8jxFnbw/view?utm_content=DAG4nMCQnuM&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hc4640f4853" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> View Details</a>
         </div>
       </div>
     </div>
 
-    <div class="project-card" data-category="brand">
+    <!-- PROJECT 2: AI Value Generation -->
+    <div class="project-card" data-category="data">
       <div class="project-thumb">
-        <div class="project-thumb-placeholder" style="background:linear-gradient(135deg,#fdf0ea,#f5d0b5);">✨</div>
+        <img
+          src="vgp_platform.png"
+          alt="AI Value Generation Project"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
+        >
+        <div class="project-thumb-placeholder" style="background:linear-gradient(135deg,#e8f0fb,#c5d8f5); display:none;">🤖</div>
       </div>
       <div class="project-body">
-        <div class="project-category cat-brand">Brand Strategy</div>
-        <div class="project-title">Social Media Campaign — Proxi Co</div>
-        <p class="project-desc">Designed and executed an organic social media campaign for Proxi Co's product launch, resulting in increased follower growth and measurable engagement improvements.</p>
+        <div class="project-category cat-data">Data &amp; Analytics</div>
+        <div class="project-title">AI Value Generation Project</div>
+        <p class="project-desc">Created a mock up of a full-stack platform that uses adaptive AI-generated assessments to standardize technical hiring, letting candidates test once and share verified scores with multiple employers.</p>
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">MongoDB</span>
+          <span class="project-tag">Product Design</span>
+          <span class="project-tag">Cursor AI</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/EvelynAltpeter/ValueGenerationProject" target="_blank" class="project-link"><i class="fab fa-github"></i> Code</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 3: Legata Social Media -->
+    <div class="project-card" data-category="social">
+      <div class="project-thumb">
+        <img
+          src="https://images.unsplash.com/photo-1769596722257-282ec3fe8594?w=800&auto=format&fit=crop&q=80"
+          alt="Social Media Campaign Strategy"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
+        >
+        <div class="project-thumb-placeholder" style="background:linear-gradient(135deg,#fdf0ea,#f5d0b5); display:none;">📱</div>
+      </div>
+      <div class="project-body">
+        <div class="project-category cat-social">Social Media</div>
+        <div class="project-title">Social Media Campaign Strategy</div>
+        <p class="project-desc">Conducted an in-depth audit of common industry practice across social media channels, created a multi-channel social media strategy for Legata focused on building digital trust and brand awareness.</p>
         <div class="project-tags">
           <span class="project-tag">Social Media</span>
           <span class="project-tag">Content Strategy</span>
           <span class="project-tag">Analytics</span>
+          <span class="project-tag">Competitive Research</span>
         </div>
         <div class="project-links">
-          <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Learn More</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="project-card" data-category="data">
-      <div class="project-thumb">
-        <div class="project-thumb-placeholder" style="background:linear-gradient(135deg,#e8eef8,#b8c8e8);">🔍</div>
-      </div>
-      <div class="project-body">
-        <div class="project-category cat-data">Data &amp; Analytics</div>
-        <div class="project-title">Sentiment Analysis — Brand Perception</div>
-        <p class="project-desc">Applied NLP sentiment analysis to social media data to measure consumer perception of a brand over time, surfacing insights for the brand management team.</p>
-        <div class="project-tags">
-          <span class="project-tag">Python</span>
-          <span class="project-tag">NLP</span>
-          <span class="project-tag">Brand Analytics</span>
-        </div>
-        <div class="project-links">
-          <a href="#" class="project-link"><i class="fab fa-github"></i> GitHub</a>
+          <a href="https://www.notion.so/Legata-Social-Media-Strategy-2505b657aa7f809b8d95df2aa43327fe?source=copy_link" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> View Details</a>
         </div>
       </div>
     </div>
@@ -534,11 +499,11 @@
     <div class="footer-accent-line"></div>
     <p>I'm always open to discussing new projects, creative ideas, or opportunities. Feel free to reach out.</p>
     <div class="footer-links">
-      <a href="mailto:charlottethunen@gmail.com" class="footer-link">
+      <a href="/cdn-cgi/l/email-protection#a8cbc0c9dac4c7dcdccddcc0ddc6cdc6e8cfc5c9c1c486cbc7c5" class="footer-link">
         <div class="footer-icon"><i class="fas fa-envelope"></i></div>
         <div class="footer-info">
           <div class="label">Email</div>
-          <div class="handle">charlottethunen@gmail.com</div>
+          <div class="handle"><span class="__cf_email__" data-cfemail="e0838881928c8f9494859488958e858ea0878d81898cce838f8d">[email&#160;protected]</span></div>
         </div>
       </a>
       <a href="https://github.com/charthunen" target="_blank" class="footer-link">
@@ -559,15 +524,6 @@
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   function filterProjects(category, btn) {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.project-card').forEach(card => {
-      card.classList.toggle('hidden', category !== 'all' && card.dataset.category !== category);
-    });
-  }
-</script>
-
-</body>
-</html>
+    document.querySelectorAll('.filter-btn').forEach(b => b.classLis
