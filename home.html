@@ -806,7 +806,16 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
+  // Build email at runtime to avoid scraping
+  const u = 'charlottethunen';
+  const d = 'gmail.com';
+  const email = u + '@' + d;
+  const el = document.getElementById('emailLink');
+  const handle = document.getElementById('emailHandle');
+  if (el) el.href = 'mailto:' + email;
+  if (handle) handle.textContent = email;
+
   // Hamburger menu
   const toggle = document.getElementById('navToggle');
   const nav = document.getElementById('mainNav');
