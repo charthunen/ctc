@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experience – Charlotte Thunen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --bg: #FFFEFC;
+      --primary: #123A6E;
+      --secondary: #740A0A;
+      --accent1: #89ABD6;
+      --accent2: #E69797;
+      --text: #2d2d2d;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    /* ---- NAV ---- */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255, 254, 252, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .nav-brand img { height: 38px; width: auto; }
+
+    .nav-brand span {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+
+    nav ul a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    nav ul a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 2px;
+      background: var(--primary);
+      transition: width 0.2s;
+    }
+
+    nav ul a:hover, nav ul a.active { color: var(--primary); }
+    nav ul a:hover::after, nav ul a.active::after { width: 100%; }
+
+    /* ---- PAGE HERO ---- */
+    .page-hero {
+      padding: 9rem 2rem 4.5rem;
+      text-align: center;
+      background: linear-gradient(150deg, #eef3fa 0%, #fdf5f5 50%, var(--bg) 100%);
+    }
+
+    .page-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 0.5rem;
+      animation: fadeInUp 0.7s ease both;
+    }
+
+    .section-line {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--accent1));
+      margin: 0.75rem auto 0;
+      border-radius: 2px;
+    }
+
+    .page-hero p {
+      color: var(--muted);
+      max-width: 480px;
+      margin: 1rem auto 0;
+      line-height: 1.7;
+      animation: fadeInUp 0.7s 0.1s ease both;
+    }
+
+    /* ---- SECTION LABELS ---- */
+    .section-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.45rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-label i { font-size: 1rem; color: var(--accent2); }
+
+    /* ---- TIMELINE ---- */
+    .timeline-section {
+      padding: 5rem 2rem 3rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--primary), var(--accent1));
+      border-radius: 2px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2rem;
+      padding-left: 2rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.45rem;
+      top: 0.45rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 3px solid var(--bg);
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+
+    .timeline-card {
+      background: white;
+      border: 1.5px solid var(--border);
+      border-left-width: 4px;
+      border-radius: 14px;
+      padding: 1.5rem 1.75rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .timeline-card:hover {
+      box-shadow: 0 8px 28px rgba(18,58,110,0.09);
+      transform: translateX(3px);
+    }
+
+    .timeline-card.card-primary   { border-left-color: var(--primary); }
+    .timeline-card.card-secondary { border-left-color: var(--secondary); }
+    .timeline-card.card-accent1   { border-left-color: var(--accent1); }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .timeline-role { font-weight: 700; font-size: 1.05rem; }
+
+    .timeline-date {
+      font-size: 0.82rem;
+      color: var(--muted);
+      background: #f0f4f9;
+      padding: 0.2rem 0.75rem;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .timeline-company {
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .timeline-location {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 0.85rem;
+    }
+
+    .timeline-location i { margin-right: 4px; color: var(--accent2); }
+
+    .timeline-bullets { list-style: none; padding: 0; }
+
+    .timeline-bullets li {
+      color: var(--muted);
+      font-size: 0.93rem;
+      line-height: 1.65;
+      margin-bottom: 0.4rem;
+      padding-left: 1.25rem;
+      position: relative;
+    }
+
+    .timeline-bullets li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--accent1);
+    }
+
+    .timeline-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      font-size: 0.78rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      background: rgba(18,58,110,0.07);
+      color: var(--primary);
+      font-weight: 500;
+      transition: background 0.2s, color 0.2s;
+      cursor: default;
+    }
+
+    .tag:hover { background: var(--primary); color: white; }
+
+    /* ---- EDUCATION ---- */
+    .education-section {
+      padding: 0 2rem 5.5rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .edu-card {
+      background: white;
+      border: 1.5px solid var(--border);
+      border-top: 4px solid var(--secondary);
+      border-radius: 14px;
+      padding: 1.75rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .edu-card:hover {
+      box-shadow: 0 8px 28px rgba(18,58,110,0.09);
+      transform: translateY(-2px);
+    }
+
+    .edu-icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(116,10,10,0.08);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--secondary);
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .edu-info h3 { font-weight: 700; font-size: 1.05rem; margin-bottom: 0.25rem; }
+    .edu-info .school { color: var(--primary); font-weight: 600; margin-bottom: 0.2rem; }
+    .edu-info .date { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.65rem; }
+    .edu-info p { font-size: 0.93rem; color: var(--muted); line-height: 1.65; }
+
+    /* ---- FOOTER ---- */
+    footer {
+      padding: 4rem 2rem;
+      border-top: 1px solid rgba(116, 10, 10, 0.12);
+      background: linear-gradient(180deg, #fdf5f5 0%, var(--bg) 100%);
+    }
+
+    .footer-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .footer-inner h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin-bottom: 0.4rem;
+      color: var(--primary);
+    }
+
+    .footer-accent-line {
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(to right, var(--secondary), var(--accent2));
+      border-radius: 2px;
+      margin: 0 auto 1.25rem;
+    }
+
+    .footer-inner > p {
+      color: var(--muted);
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    .footer-links {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .footer-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      background: white;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      text-decoration: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .footer-link:hover {
+      border-color: var(--primary);
+      box-shadow: 0 4px 16px rgba(18, 58, 110, 0.1);
+    }
+
+    .footer-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(18, 58, 110, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .footer-link:hover .footer-icon { background: var(--primary); color: white; }
+    .footer-info { text-align: left; }
+    .footer-info .label { font-size: 0.75rem; color: var(--muted); margin-bottom: 2px; }
+    .footer-info .handle { font-size: 0.85rem; color: var(--text); font-weight: 500; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 640px) {
+      .timeline { padding-left: 1rem; }
+      .timeline-item { padding-left: 1.25rem; }
+      .timeline-item::before { left: -1.45rem; }
+      .footer-links { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="home.html" class="nav-brand">
+      <img src="CT.png" alt="CT Logo">
+      <span>Charlotte Thunen</span>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="home.html#about">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="experience.html" class="active">Experience</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero">
+  <h1>Experience</h1>
+  <div class="section-line"></div>
+  <p>My professional journey — internships, co-ops, and education.</p>
+</div>
+
+<section class="timeline-section">
+  <h2 class="section-label"><i class="fas fa-briefcase"></i> Work Experience</h2>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-card card-primary">
+        <div class="timeline-header">
+          <span class="timeline-role">Project Manager Co-op</span>
+          <span class="timeline-date">Jan 2024 – Jun 2024</span>
+        </div>
+        <div class="timeline-company">MFS Investment Management</div>
+        <div class="timeline-location"><i class="fas fa-map-marker-alt"></i> Boston, MA</div>
+        <ul class="timeline-bullets">
+          <li>Managed cross-functional projects to support enterprise-level initiatives across technology and operations.</li>
+          <li>Developed project tracking dashboards and status reporting to keep stakeholders aligned.</li>
+          <li>Collaborated with senior leadership to drive process improvements and deliver on strategic goals.</li>
+        </ul>
+        <div class="timeline-tags">
+          <span class="tag">Project Management</span>
+          <span class="tag">Stakeholder Communication</span>
+          <span class="tag">Process Improvement</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card card-secondary">
+        <div class="timeline-header">
+          <span class="timeline-role">Marketing Intern</span>
+          <span class="timeline-date">Summer 2023</span>
+        </div>
+        <div class="timeline-company">Relish</div>
+        <div class="timeline-location"><i class="fas fa-map-marker-alt"></i> Seattle, WA</div>
+        <ul class="timeline-bullets">
+          <li>Developed and executed social media content strategies to grow brand engagement.</li>
+          <li>Conducted market research and consumer analysis to inform campaign direction.</li>
+          <li>Supported campaign development from ideation through execution and reporting.</li>
+        </ul>
+        <div class="timeline-tags">
+          <span class="tag">Marketing Strategy</span>
+          <span class="tag">Social Media</span>
+          <span class="tag">Consumer Research</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card card-accent1">
+        <div class="timeline-header">
+          <span class="timeline-role">Marketing Intern</span>
+          <span class="timeline-date">Summer 2022</span>
+        </div>
+        <div class="timeline-company">Proxi Co</div>
+        <div class="timeline-location"><i class="fas fa-map-marker-alt"></i> Seattle, WA</div>
+        <ul class="timeline-bullets">
+          <li>Assisted in developing brand messaging and content for a growing tech startup.</li>
+          <li>Analyzed marketing performance metrics and provided actionable insights to the team.</li>
+          <li>Supported influencer outreach and partnership coordination efforts.</li>
+        </ul>
+        <div class="timeline-tags">
+          <span class="tag">Brand Messaging</span>
+          <span class="tag">Analytics</span>
+          <span class="tag">Content Creation</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="education-section">
+  <h2 class="section-label"><i class="fas fa-book-open"></i> Education</h2>
+  <div class="edu-card">
+    <div class="edu-icon"><i class="fas fa-university"></i></div>
+    <div class="edu-info">
+      <h3>BS in Business Administration &amp; Data Science</h3>
+      <div class="school">Northeastern University</div>
+      <div class="date">2021 – 2025 &nbsp;·&nbsp; Boston, MA</div>
+      <p>Concentration in Brand Management. Combining rigorous quantitative coursework with applied business strategy, with a focus on using data-driven insights to shape brand decisions.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <h3>Let's Connect</h3>
+    <div class="footer-accent-line"></div>
+    <p>I'm always open to discussing new projects, creative ideas, or opportunities. Feel free to reach out.</p>
+    <div class="footer-links">
+      <a href="mailto:charlottethunen@gmail.com" class="footer-link">
+        <div class="footer-icon"><i class="fas fa-envelope"></i></div>
+        <div class="footer-info">
+          <div class="label">Email</div>
+          <div class="handle">charlottethunen@gmail.com</div>
+        </div>
+      </a>
+      <a href="https://github.com/charthunen" target="_blank" class="footer-link">
+        <div class="footer-icon"><i class="fab fa-github"></i></div>
+        <div class="footer-info">
+          <div class="label">GitHub</div>
+          <div class="handle">@charthunen</div>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/charlotte-thunen/" target="_blank" class="footer-link">
+        <div class="footer-icon"><i class="fab fa-linkedin"></i></div>
+        <div class="footer-info">
+          <div class="label">LinkedIn</div>
+          <div class="handle">Charlotte Thunen</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
