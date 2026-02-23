@@ -314,44 +314,92 @@
     }
 
     .seattle-img {
-      max-width: 1100px;
-      margin: 0 auto 3.5rem;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+      display: none;
     }
 
-    .seattle-img img {
+    /* ---- ABOUT BOTTOM: text + photo grid ---- */
+    .about-bottom {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .about-bottom-text p {
+      color: var(--muted);
+      line-height: 1.85;
+      font-size: 1.05rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .about-bottom-text p:last-child { margin-bottom: 0; }
+
+    /* 2×2 photo mosaic */
+    .about-photos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 195px 195px;
+      gap: 0.75rem;
+    }
+
+    .about-photo {
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .about-photo:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 28px rgba(18,58,110,0.14);
+    }
+
+    /* Tall photo spans both rows */
+    .about-photo.tall { grid-row: span 2; }
+
+    .about-photo img {
       width: 100%;
-      height: 360px;
+      height: 100%;
       object-fit: cover;
       display: block;
     }
 
-    .seattle-placeholder {
+    /* Placeholder tile when no image supplied */
+    .photo-placeholder {
       width: 100%;
-      height: 360px;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--accent1) 100%);
+      height: 100%;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .photo-placeholder i    { font-size: 1.8rem; opacity: 0.55; }
+    .photo-placeholder span { font-size: 0.72rem; opacity: 0.5; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+
+    /* Caption on hover */
+    .about-photo .photo-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 0.6rem 0.85rem;
+      background: linear-gradient(to top, rgba(18,58,110,0.62), transparent);
       color: white;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      letter-spacing: 0.05em;
+      font-size: 0.78rem;
+      font-weight: 500;
+      opacity: 0;
+      transition: opacity 0.25s;
+      letter-spacing: 0.02em;
     }
 
-    .about-bottom {
-      max-width: 700px;
-      margin: 0 auto;
-      text-align: center;
-    }
+    .about-photo:hover .photo-caption { opacity: 1; }
 
-    .about-bottom p {
-      color: var(--muted);
-      line-height: 1.8;
-      font-size: 1.05rem;
-      margin-bottom: 1rem;
+    @media (max-width: 768px) {
+      .about-bottom { grid-template-columns: 1fr; }
+      .about-photos { grid-template-rows: 160px 160px; }
     }
 
     /* ---- SKILLS ---- */
@@ -558,7 +606,7 @@
 <section class="hero">
   <img 
     class="hero-photo" 
-    src="charlotte_thunen.jpg" 
+    src="Charlotte_Thunen.jpg" 
     alt="Charlotte Thunen"
   >
   <h1>Hi, I'm <span>Charlotte Thunen</span></h1>
@@ -609,14 +657,50 @@
     </div>
   </div>
 
-  <!-- Seattle image separator -->
-  <div class="seattle-img">
-    <img src="seattle.jpg" alt="Seattle skyline" onerror="this.parentElement.innerHTML='<div class=\'seattle-placeholder\'>Seattle, WA</div>'">
-  </div>
+  <!-- About bottom: text + photo mosaic -->
+  <div class="about-bottom" style="margin-top: 3.5rem;">
+    <div class="about-bottom-text">
+      <p>With a strong analytical mindset and a drive for innovation, I'm eager to make a meaningful impact in the world of business and branding.</p>
+      <p>When I'm not working on projects, you'll find me hiking in the Pacific Northwest, exploring specialty coffee shops, running along the Charles River, or baking sourdough!</p>
+    </div>
 
-  <div class="about-bottom">
-    <p>With a strong analytical mindset and a drive for innovation, I'm eager to make a meaningful impact in the world of business and branding.</p>
-    <p>When I'm not working on projects, you'll find me hiking in the Pacific Northwest, exploring specialty coffee shops, running, or experimenting with sourdough baking in the kitchen!</p>
+    <!-- 2×2 photo mosaic — swap src="..." for your own images -->
+    <div class="about-photos">
+
+      <!-- Tall photo on the left (spans both rows) -->
+      <div class="about-photo tall">
+        <img src="photo_hiking.jpg" alt="Hiking in the Pacific Northwest"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="photo-placeholder" style="background:linear-gradient(145deg,#dce8f5,#b8d0ef); display:none;">
+          <i class="fas fa-mountain" style="color:#123A6E;"></i>
+          <span style="color:#123A6E;">Hiking PNW</span>
+        </div>
+        <div class="photo-caption">Pacific Northwest</div>
+      </div>
+
+      <!-- Top-right photo -->
+      <div class="about-photo">
+        <img src="photo_coffee.jpg" alt="Specialty coffee"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="photo-placeholder" style="background:linear-gradient(145deg,#f5e8dc,#e8c9a8); display:none;">
+          <i class="fas fa-mug-hot" style="color:#8B4513;"></i>
+          <span style="color:#8B4513;">Coffee</span>
+        </div>
+        <div class="photo-caption">Specialty Coffee</div>
+      </div>
+
+      <!-- Bottom-right photo -->
+      <div class="about-photo">
+        <img src="photo_sourdough.jpg" alt="Sourdough baking"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="photo-placeholder" style="background:linear-gradient(145deg,#f5f0dc,#e8dba8); display:none;">
+          <i class="fas fa-bread-slice" style="color:#b5821a;"></i>
+          <span style="color:#b5821a;">Sourdough</span>
+        </div>
+        <div class="photo-caption">Sourdough Baking</div>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -667,11 +751,11 @@
     <div class="footer-accent-line"></div>
     <p>I'm always open to discussing new projects, creative ideas, or opportunities. Feel free to reach out.</p>
     <div class="footer-links">
-      <a href="mailto:charlottethunen@gmail.com" class="footer-link">
+      <a href="/cdn-cgi/l/email-protection#0f6c676e7d63607b7b6a7b677a616a614f68626e6663216c6062" class="footer-link">
         <div class="footer-icon"><i class="fas fa-envelope"></i></div>
         <div class="footer-info">
           <div class="label">Email</div>
-          <div class="handle">charlottethunen@gmail.com</div>
+          <div class="handle"><span class="__cf_email__" data-cfemail="52313a33203e3d262637263a273c373c12353f333b3e7c313d3f">[email&#160;protected]</span></div>
         </div>
       </a>
       <a href="https://github.com/charthunen" target="_blank" class="footer-link">
@@ -693,21 +777,9 @@
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Skill tag hover colors
   document.querySelectorAll('.skill-tags').forEach(group => {
     const color = group.dataset.color;
     group.querySelectorAll('.skill-tag').forEach(tag => {
       tag.addEventListener('mouseenter', () => {
-        tag.style.backgroundColor = color;
-        tag.style.color = 'white';
-      });
-      tag.addEventListener('mouseleave', () => {
-        tag.style.backgroundColor = '';
-        tag.style.color = '';
-      });
-    });
-  });
-</script>
-</body>
-</html>
