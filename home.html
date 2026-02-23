@@ -585,15 +585,35 @@
       /* Mobile nav */
       .nav-toggle { display: flex; }
 
+      header {
+        flex-wrap: wrap;
+        height: auto;
+      }
+
+      .nav-inner {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 0;
+      }
+
+      .nav-inner > a {
+        padding: 0 1.25rem;
+        height: 64px;
+        display: flex;
+        align-items: center;
+      }
+
+      .nav-inner > button {
+        margin-right: 1.25rem;
+      }
+
       nav {
-        position: absolute;
-        top: 64px; left: 0; right: 0;
-        background: rgba(255, 254, 252, 0.98);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid var(--border);
+        width: 100%;
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.3s ease;
+        border-top: 1px solid var(--border);
+        background: rgba(255,254,252,0.98);
       }
 
       nav.open { max-height: 300px; }
@@ -606,7 +626,7 @@
 
       nav ul li a {
         display: block;
-        padding: 0.85rem 2rem;
+        padding: 0.85rem 1.5rem;
         font-size: 1rem;
       }
 
@@ -700,33 +720,33 @@
     <div class="about-photos">
 
       <div class="about-photo">
-        <img src="seattle.jpg" alt="Seattle">
+        <img src="photos/seattle.jpg" alt="Seattle">
         <div class="photo-caption">Seattle, WA</div>
       </div>
 
       <div class="about-photo">
-        <img src="boston.jpg" alt="Boston">
+        <img src="photos/boston.jpg" alt="Boston">
         <div class="photo-caption">Boston, MA</div>
       </div>
 
       <div class="about-photo">
-        <img src="running.jpg" alt="Running">
-        <div class="photo-caption">Running</div>
+        <img src="photos/running.jpg" alt="Running">
+        <div class="photo-caption">Cambridge Half Marathon!</div>
       </div>
 
       <div class="about-photo">
-        <img src="hiking.jpg" alt="Hiking">
-        <div class="photo-caption">Hiking PNW</div>
+        <img src="photos/hiking.jpg" alt="Hiking">
+        <div class="photo-caption">Mail Box Peak Hike in WA</div>
       </div>
 
       <div class="about-photo">
-        <img src="baking.jpg" alt="Sourdough baking">
-        <div class="photo-caption">Sourdough Baking</div>
+        <img src="photos/bread.jpg" alt="Sourdough baking">
+        <div class="photo-caption">Homemade Sourdough!</div>
       </div>
 
       <div class="about-photo">
-        <img src="dog.jpg" alt="Dog">
-        <div class="photo-caption">My Dog</div>
+        <img src="photos/dog.jpg" alt="Dog">
+        <div class="photo-caption">Teddy</div>
       </div>
 
     </div>
@@ -780,11 +800,11 @@
     <div class="footer-accent-line"></div>
     <p>I'm always open to discussing new projects, creative ideas, or opportunities. Feel free to reach out.</p>
     <div class="footer-links">
-      <a href="/cdn-cgi/l/email-protection#0f6c676e7d63607b7b6a7b677a616a614f68626e6663216c6062" class="footer-link">
+      <a href="#" id="emailLink" class="footer-link">
         <div class="footer-icon"><i class="fas fa-envelope"></i></div>
         <div class="footer-info">
           <div class="label">Email</div>
-          <div class="handle"><span class="__cf_email__" data-cfemail="52313a33203e3d262637263a273c373c12353f333b3e7c313d3f">[email&#160;protected]</span></div>
+          <div class="handle" id="emailHandle"></div>
         </div>
       </a>
       <a href="https://github.com/charthunen" target="_blank" class="footer-link">
@@ -807,28 +827,43 @@
 </footer>
 
 <script>
-  // Build email at runtime to avoid scraping
-  const u = 'charlottethunen';
-  const d = 'gmail.com';
-  const email = u + '@' + d;
-  const el = document.getElementById('emailLink');
-  const handle = document.getElementById('emailHandle');
-  if (el) el.href = 'mailto:' + email;
-  if (handle) handle.textContent = email;
+  // Email (built at runtime to avoid scraping)
+  const u = 'charlottethunen', d = 'gmail.com', email = u + '@' + d;
+  const emailLink = document.getElementById('emailLink');
+  const emailHandle = document.getElementById('emailHandle');
+  if (emailLink) emailLink.href = 'mailto:' + email;
+  if (emailHandle) emailHandle.textContent = email;
 
   // Hamburger menu
   const toggle = document.getElementById('navToggle');
-  const nav = document.getElementById('mainNav');
-  toggle.addEventListener('click', () => {
-    toggle.classList.toggle('open');
-    nav.classList.toggle('open');
-  });
-  // Close menu when a link is clicked
-  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    toggle.classList.remove('open');
-    nav.classList.remove('open');
-  }));
+  const mobileNav = document.getElementById('mainNav');
+  if (toggle && mobileNav) {
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('open');
+      mobileNav.classList.toggle('open');
+    });
+    mobileNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        toggle.classList.remove('open');
+        mobileNav.classList.remove('open');
+      });
+    });
+  }
+
+  // Skill tag hover colors
   document.querySelectorAll('.skill-tags').forEach(group => {
     const color = group.dataset.color;
     group.querySelectorAll('.skill-tag').forEach(tag => {
       tag.addEventListener('mouseenter', () => {
+        tag.style.backgroundColor = color;
+        tag.style.color = 'white';
+      });
+      tag.addEventListener('mouseleave', () => {
+        tag.style.backgroundColor = '';
+        tag.style.color = '';
+      });
+    });
+  });
+</script>
+</body>
+</html>
