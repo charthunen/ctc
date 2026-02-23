@@ -1,158 +1,576 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charlotte Thunen Consulting</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <style>
-        body {
-          font-family: Arial, sans-serif;
-          background-color: #f8f8f8;
-          margin: 0;
-          padding: 0;
-          display: flex;
-          flex-direction: column;
-          min-height: 100vh;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects – Charlotte Thunen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --bg: #FFFEFC;
+      --primary: #123A6E;
+      --secondary: #740A0A;
+      --accent1: #89ABD6;
+      --accent2: #E69797;
+      --text: #2d2d2d;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+    }
 
-        /* Navigation Bar */
-        nav {
-            background-color: #123a6e;
-            padding: 10px 20px;
-        }
-        
-        .nav-container {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          max-width: 1200px;
-          margin: 0 auto;
-        }      
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
-        .nav-logo img {
-          height: 50px;
-          width: auto;
-        }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
 
-        .nav-links a {
-          color: white;
-          text-decoration: none;
-          font-size: 18px;
-          padding: 10px 20px;
-          display: inline-block;
-        }
-        
-        .nav-links a:hover {
-          background-color: #617fa5;
-          border-radius: 5px;
-        }
-        
-    main {
-      flex: 1;
+    /* ---- NAV ---- */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255, 254, 252, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .nav-brand img { height: 38px; width: auto; }
+
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+
+    nav ul a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    nav ul a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 2px;
+      background: var(--primary);
+      transition: width 0.2s;
+    }
+
+    nav ul a:hover, nav ul a.active { color: var(--primary); }
+    nav ul a:hover::after, nav ul a.active::after { width: 100%; }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--primary);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ---- PAGE HERO ---- */
+    .page-hero {
+      padding: 9rem 2rem 4.5rem;
       text-align: center;
-      padding: 40px 20px;
+      background: linear-gradient(150deg, #eef3fa 0%, #fdf5f5 50%, var(--bg) 100%);
     }
 
-    .headshot {
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-top: 20px;
+    .page-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 0.5rem;
+      animation: fadeInUp 0.7s ease both;
     }
 
-    h1 {
-      font-size: 2.5rem;
-      margin-top: 20px;
+    .section-line {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--accent1));
+      margin: 0.75rem auto 0;
+      border-radius: 2px;
     }
 
-    p {
-      max-width: 800px;
-      margin: 20px auto;
-      padding: 0 20px;
-      text-align: left;
+    .page-hero p {
+      color: var(--muted);
+      max-width: 540px;
+      margin: 1rem auto 0;
+      line-height: 1.7;
+      animation: fadeInUp 0.7s 0.1s ease both;
     }
 
-    footer {
-      background-color: #123a6e;
+    /* ---- FILTER TABS (styled to match btn-outline from home) ---- */
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 3rem 2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 0.5rem 1.3rem;
+      border: 2px solid var(--border);
+      border-radius: 20px;
+      background: white;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--accent1);
+      color: var(--primary);
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
       color: white;
+    }
+
+    /* ---- PROJECT GRID ---- */
+    .projects-section {
+      padding: 3rem 2rem 6rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .project-card {
+      background: white;
+      border: 1.5px solid var(--border);
+      border-top-width: 4px;
+      border-radius: 16px;
+      overflow: hidden;
+      transition: box-shadow 0.25s, transform 0.25s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top border colors match card categories */
+    .project-card[data-category="brand"]    { border-top-color: var(--secondary); }
+    .project-card[data-category="data"]     { border-top-color: var(--primary); }
+    .project-card[data-category="social"]   { border-top-color: #7a5a9a; }
+
+    .project-card:hover {
+      box-shadow: 0 16px 40px rgba(18,58,110,0.1);
+      transform: translateY(-4px);
+    }
+
+    .project-card.hidden { display: none; }
+
+    .project-thumb {
+      height: 170px;
+      overflow: hidden;
+    }
+
+    .project-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+
+    .project-card:hover .project-thumb img { transform: scale(1.04); }
+
+    .project-thumb-placeholder {
+      width: 100%; height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+    }
+
+    .project-body {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-category {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+
+    .cat-data     { color: var(--primary); }
+    .cat-brand    { color: var(--secondary); }
+    .cat-strategy { color: #4a7a3a; }
+    .cat-social   { color: #7a5a9a; }
+
+    .project-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-desc {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Tags match home skill-tag / experience tag pills exactly */
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .project-tag {
+      font-size: 0.78rem;
+      padding: 0.25rem 0.75rem;
+      background: rgba(18,58,110,0.07);
+      color: var(--primary);
+      border-radius: 20px;
+      font-weight: 500;
+      transition: background 0.2s, color 0.2s;
+      cursor: default;
+    }
+
+    .project-tag:hover { background: var(--primary); color: white; }
+
+    /* Link buttons match home btn-outline style */
+    .project-links { display: flex; gap: 0.6rem; }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent1);
+      text-decoration: none;
+      padding: 0.4rem 1rem;
+      border: 2px solid var(--accent1);
+      border-radius: 8px;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    .project-link:hover {
+      background: var(--accent1);
+      color: white;
+    }
+
+    /* ---- FOOTER ---- */
+    footer {
+      padding: 4rem 2rem;
+      border-top: 1px solid rgba(116, 10, 10, 0.12);
+      background: linear-gradient(180deg, #fdf5f5 0%, var(--bg) 100%);
+    }
+
+    .footer-inner {
+      max-width: 900px;
+      margin: 0 auto;
       text-align: center;
-      padding: 20px 10px;
+    }
+
+    .footer-inner h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin-bottom: 0.4rem;
+      color: var(--primary);
+    }
+
+    .footer-accent-line {
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(to right, var(--secondary), var(--accent2));
+      border-radius: 2px;
+      margin: 0 auto 1.25rem;
+    }
+
+    .footer-inner > p {
+      color: var(--muted);
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
     }
 
     .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      flex-wrap: wrap;
-      margin-top: 10px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      max-width: 700px;
+      margin: 0 auto;
     }
 
-    .footer-links a {
-      color: white;
-      text-decoration: none;
-      font-size: 18px;
+    .footer-link {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      background: white;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      text-decoration: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
 
-    .footer-links a:hover {
-      color: #617fa5;
+    .footer-link:hover {
+      border-color: var(--primary);
+      box-shadow: 0 4px 16px rgba(18, 58, 110, 0.1);
     }
-        
+
+    .footer-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(18, 58, 110, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .footer-link:hover .footer-icon { background: var(--primary); color: white; }
+    .footer-info { text-align: left; }
+    .footer-info .label { font-size: 0.75rem; color: var(--muted); margin-bottom: 2px; }
+    .footer-info .handle { font-size: 0.85rem; color: var(--text); font-weight: 500; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 640px) {
+      .projects-grid { grid-template-columns: 1fr; }
+      .footer-links { grid-template-columns: 1fr; }
+      .nav-toggle { display: flex; }
+
+      nav {
+        position: absolute;
+        top: 64px; left: 0; right: 0;
+        background: rgba(255, 254, 252, 0.98);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+
+      nav.open { max-height: 300px; }
+
+      nav ul { flex-direction: column; gap: 0; padding: 0.5rem 0 1rem; }
+      nav ul li a { display: block; padding: 0.85rem 2rem; font-size: 1rem; }
+      nav ul a::after { display: none; }
+    }
   </style>
 </head>
+<body>
 
-  <body>
+<header>
+  <div class="nav-inner">
+    <a href="home.html" class="nav-brand">
+      <img src="CT.png" alt="CT Logo">
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="mainNav">
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="projects.html" class="active">Projects</a></li>
+        <li><a href="experience.html">Experience</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-<!-- Navigation Bar -->
-<nav>
-  <div class="nav-container">
-    <div class="nav-logo">
-      <a href="home.html">
-        <img src="logo/big_white_on_blue_logo.png" alt="Charlotte Logo">
-      </a>
+<div class="page-hero">
+  <h1>Projects</h1>
+  <div class="section-line"></div>
+  <p>A collection of projects showcasing my work in brand strategy, data analysis, and business intelligence — each bridging analytics and creativity.</p>
+</div>
+
+<div class="filters">
+  <button class="filter-btn active" onclick="filterProjects('all', this)">All</button>
+  <button class="filter-btn" onclick="filterProjects('brand', this)">Brand Strategy</button>
+  <button class="filter-btn" onclick="filterProjects('data', this)">Data &amp; Analytics</button>
+  <button class="filter-btn" onclick="filterProjects('social', this)">Social Media</button>
+</div>
+
+<section class="projects-section">
+  <div class="projects-grid" id="projectsGrid">
+
+    <!-- PROJECT 1: WIN Energy -->
+    <div class="project-card" data-category="brand">
+      <div class="project-thumb">
+        <img
+          src="win_energy.png"
+          alt="WIN Energy Drink Campaign"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
+        >
+        <div class="project-thumb-placeholder" style="background:linear-gradient(135deg,#fbeaea,#f5c5c5); display:none;">⚡</div>
+      </div>
+      <div class="project-body">
+        <div class="project-category cat-brand">Brand Strategy</div>
+        <div class="project-title">Advertising &amp; Brand Promotion Campaign</div>
+        <p class="project-desc">Comprehensive advertising and brand promotion strategy for WIN: a seamoss infused energy drink, utilizing market research and consumer sentiment data to generate actionable recommendations for the brand.</p>
+        <div class="project-tags">
+          <span class="project-tag">Market Research</span>
+          <span class="project-tag">Brand Strategy</span>
+          <span class="project-tag">Data Analysis</span>
+          <span class="project-tag">Advertising Strategy</span>
+        </div>
+        <div class="project-links">
+          <a href="https://www.canva.com/design/DAG4nMCQnuM/jIuanMT4UJqln8X8jxFnbw/view?utm_content=DAG4nMCQnuM&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hc4640f4853" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> View Details</a>
+        </div>
+      </div>
     </div>
-    <div class="nav-links">
-      <a href="home.html">Home</a>
-      <a href="portfolio.html">Portfolio</a>
-      <a hred="resume.html">Resume</a>
+
+    <!-- PROJECT 2: AI Value Generation -->
+    <div class="project-card" data-category="data">
+      <div class="project-thumb">
+        <img
+          src="vgp_project.png"
+          alt="AI Value Generation Project"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
+        >
+        <div class="project-thumb-placeholder" style="background:linear-gradient(135deg,#e8f0fb,#c5d8f5); display:none;">🤖</div>
+      </div>
+      <div class="project-body">
+        <div class="project-category cat-data">Data &amp; Analytics</div>
+        <div class="project-title">AI Value Generation Project</div>
+        <p class="project-desc">Created a mock up of a full-stack platform that uses adaptive AI-generated assessments to standardize technical hiring, letting candidates test once and share verified scores with multiple employers.</p>
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">MongoDB</span>
+          <span class="project-tag">Product Design</span>
+          <span class="project-tag">Cursor AI</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/EvelynAltpeter/ValueGenerationProject" target="_blank" class="project-link"><i class="fab fa-github"></i> Code</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 3: Legata Social Media -->
+    <div class="project-card" data-category="social">
+      <div class="project-thumb">
+        <img
+          src="https://images.unsplash.com/photo-1769596722257-282ec3fe8594?w=800&auto=format&fit=crop&q=80"
+          alt="Social Media Campaign Strategy"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
+        >
+        <div class="project-thumb-placeholder" style="background:linear-gradient(135deg,#fdf0ea,#f5d0b5); display:none;">📱</div>
+      </div>
+      <div class="project-body">
+        <div class="project-category cat-social">Social Media</div>
+        <div class="project-title">Social Media Campaign Strategy</div>
+        <p class="project-desc">Conducted an in-depth audit of common industry practice across social media channels, created a multi-channel social media strategy for Legata focused on building digital trust and brand awareness.</p>
+        <div class="project-tags">
+          <span class="project-tag">Social Media</span>
+          <span class="project-tag">Content Strategy</span>
+          <span class="project-tag">Analytics</span>
+          <span class="project-tag">Competitive Research</span>
+        </div>
+        <div class="project-links">
+          <a href="https://www.notion.so/Legata-Social-Media-Strategy-2505b657aa7f809b8d95df2aa43327fe?source=copy_link" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> View Details</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <h3>Let's Connect</h3>
+    <div class="footer-accent-line"></div>
+    <p>I'm always open to discussing new projects, creative ideas, or opportunities. Feel free to reach out.</p>
+    <div class="footer-links">
+      <a href="/cdn-cgi/l/email-protection#a8cbc0c9dac4c7dcdccddcc0ddc6cdc6e8cfc5c9c1c486cbc7c5" class="footer-link">
+        <div class="footer-icon"><i class="fas fa-envelope"></i></div>
+        <div class="footer-info">
+          <div class="label">Email</div>
+          <div class="handle"><span class="__cf_email__" data-cfemail="e0838881928c8f9494859488958e858ea0878d81898cce838f8d">[email&#160;protected]</span></div>
+        </div>
+      </a>
+      <a href="https://github.com/charthunen" target="_blank" class="footer-link">
+        <div class="footer-icon"><i class="fab fa-github"></i></div>
+        <div class="footer-info">
+          <div class="label">GitHub</div>
+          <div class="handle">@charthunen</div>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/charlotte-thunen/" target="_blank" class="footer-link">
+        <div class="footer-icon"><i class="fab fa-linkedin"></i></div>
+        <div class="footer-info">
+          <div class="label">LinkedIn</div>
+          <div class="handle">Charlotte Thunen</div>
+        </div>
+      </a>
     </div>
   </div>
-</nav>
+</footer>
 
-<!-- Page Content -->
-<main>
-  <embed src="Charlotte_Thunen.pdf" type="application/pdf" width="100%" height="800px" />
-
-  <a href="Charlotte_Thunen.pdf" target="_blank" style="display:inline-block; 
-        padding:12px 24px; 
-        background-color:#123a6e; 
-        color:white; 
-        text-decoration:none; 
-        border-radius:6px; 
-        font-size:18px;">View or download my resume for a mobile device</a>
-</main>
-    
- <!-- Footer -->
-  <footer>
-    <h2>Connect with Me</h2>
-    <div class="footer-links">
-      <a href="https://www.linkedin.com/in/charlotte-thunen/" target="_blank">
-        <i class="fab fa-linkedin"></i> LinkedIn
-      </a>
-      <a href="mailto:charlottethunen@gmail.com">
-        <i class="fas fa-envelope"></i> Email
-      </a>
-      <a href="tel:2062455150">
-        <i class="fas fa-phone"></i> Phone
-      </a>
-    </div>
-  </footer>
-    
-</body>
-</html>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  function filterProjects(category, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classLis
+<script>
+  const toggle = document.getElementById('navToggle');
+  const nav = document.getElementById('mainNav');
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('open');
+    nav.classList.toggle('open');
+  });
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    toggle.classList.remove('open');
+    nav.classList.remove('open');
+  }));
+</script>
