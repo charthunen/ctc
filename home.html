@@ -336,29 +336,26 @@
 
     .about-bottom-text p:last-child { margin-bottom: 0; }
 
-    /* 2×2 photo mosaic */
+    /* 3×2 photo grid */
     .about-photos {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 195px 195px;
-      gap: 0.75rem;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 150px);
+      gap: 0.65rem;
     }
 
     .about-photo {
-      border-radius: 14px;
+      border-radius: 12px;
       overflow: hidden;
       position: relative;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.1);
       transition: transform 0.25s, box-shadow 0.25s;
     }
 
     .about-photo:hover {
-      transform: scale(1.02);
+      transform: scale(1.03);
       box-shadow: 0 10px 28px rgba(18,58,110,0.14);
     }
-
-    /* Tall photo spans both rows */
-    .about-photo.tall { grid-row: span 2; }
 
     .about-photo img {
       width: 100%;
@@ -367,28 +364,14 @@
       display: block;
     }
 
-    /* Placeholder tile when no image supplied */
-    .photo-placeholder {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-    }
-
-    .photo-placeholder i    { font-size: 1.8rem; opacity: 0.55; }
-    .photo-placeholder span { font-size: 0.72rem; opacity: 0.5; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
-
     /* Caption on hover */
     .about-photo .photo-caption {
       position: absolute;
       bottom: 0; left: 0; right: 0;
-      padding: 0.6rem 0.85rem;
-      background: linear-gradient(to top, rgba(18,58,110,0.62), transparent);
+      padding: 0.5rem 0.75rem;
+      background: linear-gradient(to top, rgba(18,58,110,0.65), transparent);
       color: white;
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 500;
       opacity: 0;
       transition: opacity 0.25s;
@@ -399,7 +382,7 @@
 
     @media (max-width: 768px) {
       .about-bottom { grid-template-columns: 1fr; }
-      .about-photos { grid-template-rows: 160px 160px; }
+      .about-photos { grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 120px); }
     }
 
     /* ---- SKILLS ---- */
@@ -657,47 +640,43 @@
     </div>
   </div>
 
-  <!-- About bottom: text + photo mosaic -->
+  <!-- About bottom: text + 6-photo grid -->
   <div class="about-bottom" style="margin-top: 3.5rem;">
     <div class="about-bottom-text">
       <p>With a strong analytical mindset and a drive for innovation, I'm eager to make a meaningful impact in the world of business and branding.</p>
       <p>When I'm not working on projects, you'll find me hiking in the Pacific Northwest, exploring specialty coffee shops, running along the Charles River, or baking sourdough!</p>
     </div>
 
-    <!-- 2×2 photo mosaic — swap src="..." for your own images -->
     <div class="about-photos">
 
-      <!-- Tall photo on the left (spans both rows) -->
-      <div class="about-photo tall">
-        <img src="photo_hiking.jpg" alt="Hiking in the Pacific Northwest"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-        <div class="photo-placeholder" style="background:linear-gradient(145deg,#dce8f5,#b8d0ef); display:none;">
-          <i class="fas fa-mountain" style="color:#123A6E;"></i>
-          <span style="color:#123A6E;">Hiking PNW</span>
-        </div>
-        <div class="photo-caption">Pacific Northwest</div>
+      <div class="about-photo">
+        <img src="seattle.jpg" alt="Seattle">
+        <div class="photo-caption">Seattle, WA</div>
       </div>
 
-      <!-- Top-right photo -->
       <div class="about-photo">
-        <img src="photo_coffee.jpg" alt="Specialty coffee"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-        <div class="photo-placeholder" style="background:linear-gradient(145deg,#f5e8dc,#e8c9a8); display:none;">
-          <i class="fas fa-mug-hot" style="color:#8B4513;"></i>
-          <span style="color:#8B4513;">Coffee</span>
-        </div>
-        <div class="photo-caption">Specialty Coffee</div>
+        <img src="boston.jpg" alt="Boston">
+        <div class="photo-caption">Boston, MA</div>
       </div>
 
-      <!-- Bottom-right photo -->
       <div class="about-photo">
-        <img src="photo_sourdough.jpg" alt="Sourdough baking"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-        <div class="photo-placeholder" style="background:linear-gradient(145deg,#f5f0dc,#e8dba8); display:none;">
-          <i class="fas fa-bread-slice" style="color:#b5821a;"></i>
-          <span style="color:#b5821a;">Sourdough</span>
-        </div>
+        <img src="running.jpg" alt="Running">
+        <div class="photo-caption">Running</div>
+      </div>
+
+      <div class="about-photo">
+        <img src="hiking.jpg" alt="Hiking">
+        <div class="photo-caption">Hiking PNW</div>
+      </div>
+
+      <div class="about-photo">
+        <img src="baking.jpg" alt="Sourdough baking">
         <div class="photo-caption">Sourdough Baking</div>
+      </div>
+
+      <div class="about-photo">
+        <img src="dog.jpg" alt="Dog">
+        <div class="photo-caption">My Dog</div>
       </div>
 
     </div>
